@@ -65,6 +65,21 @@
     Bitstream Vera Sans Mono, Courier New, monospace;
 }
 
+.rules{
+  max-width: 900px;
+  padding: 1.25rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid;
+  border-color: inherit;
+  box-shadow: 3px 6px;
+}
+.rules h1,
+.rules h2{
+  padding: 1.5rem;
+}
+
 .go_back {
   margin: 1rem;
   padding: 1rem;
