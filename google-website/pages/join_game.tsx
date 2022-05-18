@@ -9,15 +9,14 @@ const join_game = () => {
             <a href='./' className={styles.go_back}>Go Back</a>
             <main className={styles.main}>
                 <h2 className={styles.title}>Join A Game</h2>
-                <form action="/api/form" method="post">
-                    <label htmlFor="first">First Name</label>
-                    <input className={styles.info} type="text" id="first" name="first" required />
 
-                    <label htmlFor="last">Last Name</label>
-                    <input className={styles.info} type="text" id="last" name="last" required />
+                <label htmlFor="token">token</label>
+                <input className={styles.info} type="text" id="token" name="token" required />
+
+                <label htmlFor="username">username</label>
+                <input className={styles.info} type="text" id="username" name="username" required />
                     
-                    <button>&rarr;</button>
-                </form>
+                <button onClick={() => window.alert("yes")}>&rarr;</button>
             </main>
         </div>
     );
