@@ -12,6 +12,19 @@
   align-items: center;
 }
 
+.info {
+  color: inherit;
+  border: 1px solid;
+  padding: 2.5px;
+  max-width: 100px;
+  transition: color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.info:active,
+.info:focus {
+  border-color: #0070f3;
+}
+
 .footer {
   display: flex;
   flex: 1;
