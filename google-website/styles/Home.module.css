@@ -150,6 +150,24 @@
   line-height: 1.5;
 }
 
+.submit { 
+  margin: 1rem;
+  border-radius: 5px;
+  font-size: 1.25rem;
+  background-color:black;
+  color: #fafafa;
+  border: 1px solid;
+  box-shadow: 0;
+  transition: color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.submit:hover,
+.submit:focus{
+  box-shadow: 2.5px 5px black;
+  background-color: inherit;
+  color: inherit;
+}
+
 .logo {
   height: 1em;
   margin-left: 0.5rem;

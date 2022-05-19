@@ -17,7 +17,7 @@ const create_game = () => {
                 <label htmlFor="field">field size</label>
                 <input className={styles.info} type="text" id="field" name="field" required />
                 
-                <button onClick={() => window.alert("yes")}>&rarr;</button>
+                <button className={styles.submit} onClick={() => window.alert("got info")}>&rarr;</button>
 
             </main>
         </div>

@@ -16,7 +16,7 @@ const join_game = () => {
                 <label htmlFor="username">username</label>
                 <input className={styles.info} type="text" id="username" name="username" required />
                     
-                <button onClick={() => window.alert("yes")}>&rarr;</button>
+                <button className={styles.submit} onClick={() => window.alert("got info")}>&rarr;</button>
             </main>
         </div>
     );
