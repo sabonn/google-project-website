@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<div>
+    <link rel="stylesheet" href="./styles.css">
+    <script src='./index.js'></script>
+    <main class="main">
+        <h2 class="title">Waiting Room</h2>
+        
+        <p class="rules">the game will beging shortly</p>
+        <p class="rules" id="players">players: </p>
+
+        <button id="scanButton" class="submit">&rarr;</button>
+        
+        <script>
+        if (!("NDEFReader" in window))
+          window.alert("Web NFC is not available. Use Chrome on Android.");
+        </script>
+        
+    </main>
+</div>
