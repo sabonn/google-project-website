@@ -1,3 +1,5 @@
+var data = open('/Users/itayeshkar/Documents/GitHub/google-project-website/google-website/src/index.json')
+
 var players = [];
 var tokens = "";
 
@@ -19,6 +21,7 @@ const create_game = () => {
         window.location.href = './waiting.html';
         document.getElementById('players').innerHTML += name.toString() + ' ';
     } else {
+        console.log(data);
         window.alert("check that everything is full");
     }
 }
