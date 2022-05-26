@@ -1,5 +1,3 @@
-var data = open('/Users/itayeshkar/Documents/GitHub/google-project-website/google-website/src/index.json')
-
 var players = [];
 var tokens = "";
 
