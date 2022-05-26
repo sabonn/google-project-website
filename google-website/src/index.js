@@ -1,5 +1,4 @@
-var players = [];
-var tokens = "";
+var data = require('./index.json');
 
 const create_token = () => {
     var temp = 0;
@@ -13,9 +12,9 @@ const create_game = () => {
     var name = document.getElementById('username').value;
     var size = document.getElementById('field').value;
     if(name != "" && size != ""){
-        players.push(name.toString());
-        tokens = create_token();
-        window.alert("token: " + tokens);
+        data.players.push(name.toString());
+        data.token = create_token();
+        window.alert("token: " + data.token);
         window.location.href = './waiting.html';
         document.getElementById('players').innerHTML += name.toString() + ' ';
     } else {
@@ -30,7 +29,7 @@ const join = () => {
     
     if (token == ""){
         window.alert("please enter a token");
-    } else if(token == tokens && !players.includes(name)){
+    } else if(token == data.token && !players.includes(name)){
         players.push(name);
         window.location.href = './waiting.html';
         document.getElementById('players').innerHTML += name + ' ';
