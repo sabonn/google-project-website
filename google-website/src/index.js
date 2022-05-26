@@ -14,7 +14,7 @@ const create_game = () => {
     var size = document.getElementById('field').value;
     if(name != "" && size != ""){
         players.push(name.toString());
-        tokens += create_token();
+        tokens = create_token();
         window.alert("token: " + tokens);
         window.location.href = './waiting.html';
         document.getElementById('players').innerHTML += name.toString() + ' ';
