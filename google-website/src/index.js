@@ -1,11 +1,5 @@
 var api_token ="AIzaSyCEY6YMFUn3rzCTPO_ZA1gX40WQaO6FkPE";
 
-fetch('../data/index.json')
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-    });
-
 const create_token = () => {
     var temp = 0;
     for(var i = 0; i < 18;i++){
@@ -18,10 +12,17 @@ const create_game = () => {
     var name = document.getElementById('username').value;
     var size = document.getElementById('field').value;
     if(name != "" && size != ""){
-        index_data[123].players.push(name);
+
+      fetch('../data/index.json')
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          data[123].players[0] = name.toString();
+          document.getElementById('players').innerHTML = data[123].players;
+        });
+
         window.alert("token: " + create_token());
         window.location.href = './waiting.html';
-        document.getElementById('players').innerHTML += name + ' ';
     } else {
       window.alert("check that everything is full");
     }
