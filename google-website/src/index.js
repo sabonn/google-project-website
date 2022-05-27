@@ -1,12 +1,9 @@
 var api_token ="AIzaSyCEY6YMFUn3rzCTPO_ZA1gX40WQaO6FkPE";
 
-var index_data;
-
 fetch('../data/index.json')
     .then(response => response.json())
     .then(data => {
-      index_data = data;
-      console.log(index_data);
+      console.log(data);
     });
 
 const create_token = () => {
