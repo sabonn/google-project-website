@@ -1,4 +1,7 @@
-var data = require('./index.json');
+var data = {
+  "players": [],
+  "token": ""
+}
 
 const create_token = () => {
     var temp = 0;
@@ -16,7 +19,7 @@ const create_game = () => {
         data.token = create_token();
         window.alert("token: " + data.token);
         window.location.href = './waiting.html';
-        document.getElementById('players').innerHTML += name.toString() + ' ';
+        document.getElementById('players').innerHTML += name + ' ';
     } else {
         console.log(data);
         window.alert("check that everything is full");
