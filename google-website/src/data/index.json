@@ -1,5 +1,7 @@
 {
     "123":{
-        "players": ["itay", "tomer"]
+        "players": ["itay", "tomer"],
+        "vote": 0,
+        "start": false
     }
 }

@@ -6,8 +6,9 @@
         <h2 class="title">Waiting Room</h2>
         
         <p class="rules">the game will beging shortly</p>
+        <p id="votes" class="rules">votes: </p>
 
-        <button id="scanButton" class="submit">&rarr;</button>
+        <button id="scanButton" class="submit" onclick="vote()">&rarr;</button>
         
         <script>
         if (!("NDEFReader" in window))

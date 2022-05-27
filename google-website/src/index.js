@@ -1,4 +1,5 @@
 var api_token ="AIzaSyCEY6YMFUn3rzCTPO_ZA1gX40WQaO6FkPE";
+var votes = 0, is_pressed = false;
 
 const create_token = () => {
     var temp = 0;
@@ -26,6 +27,26 @@ const create_game = () => {
     } else {
       window.alert("check that everything is full");
     }
+}
+
+const vote = () => {
+  if(!is_pressed){
+    votes++;
+    is_pressed = true;
+  } else {
+    window.alert("you have all ready voted");
+  }
+
+  fetch('../data/index.json')
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      document.getElementById('votes').innerHTML = "votes: " + votes.toString();
+      data[123].vote = votes;
+      if(data[123].vote > data[123].players.length){
+        data[123].start = true;
+      }
+    });
 }
 
 const join = () => {
