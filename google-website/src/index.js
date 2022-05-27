@@ -29,6 +29,16 @@ const create_game = () => {
     }
 }
 
+const check_start = () => {
+  fetch('../data/index.json')
+    .then(result => result.json())
+    .then(data => {
+      if(data[123].start){
+        window.location.href = './game.html';
+      }
+    });
+}
+
 const vote = () => {
   if(!is_pressed){
     votes++;
@@ -84,6 +94,8 @@ const nfc = async () => {
       log("Argh! " + error);
   }
 }
+
+check_start();
 
 /*
 scanButton.addEventListener("click", async () => {
