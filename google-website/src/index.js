@@ -1,7 +1,10 @@
-var data = {
-  "players": [],
-  "token": ""
-}
+var api_token ="AIzaSyCEY6YMFUn3rzCTPO_ZA1gX40WQaO6FkPE";
+
+fetch('../data/index.json')
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+    });
 
 const create_token = () => {
     var temp = 0;
@@ -21,8 +24,7 @@ const create_game = () => {
         window.location.href = './waiting.html';
         document.getElementById('players').innerHTML += name + ' ';
     } else {
-        console.log(data);
-        window.alert("check that everything is full");
+      window.alert("check that everything is full");
     }
 }
 
