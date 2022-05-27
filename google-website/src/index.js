@@ -1,9 +1,12 @@
 var api_token ="AIzaSyCEY6YMFUn3rzCTPO_ZA1gX40WQaO6FkPE";
 
+var index_data;
+
 fetch('../data/index.json')
     .then(response => response.json())
     .then(data => {
-      console.log(data);
+      index_data = data;
+      console.log(index_data);
     });
 
 const create_token = () => {
@@ -18,9 +21,8 @@ const create_game = () => {
     var name = document.getElementById('username').value;
     var size = document.getElementById('field').value;
     if(name != "" && size != ""){
-        data.players.push(name.toString());
-        data.token = create_token();
-        window.alert("token: " + data.token);
+        index_data[123].players.push(name);
+        window.alert("token: " + create_token());
         window.location.href = './waiting.html';
         document.getElementById('players').innerHTML += name + ' ';
     } else {
