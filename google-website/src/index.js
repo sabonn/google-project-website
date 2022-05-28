@@ -1,5 +1,5 @@
 var api_token ="AIzaSyCEY6YMFUn3rzCTPO_ZA1gX40WQaO6FkPE";
-var votes = 0, is_pressed = false;
+var votes = 0, is_pressed = false, token_game = 0;
 
 const create_token = () => {
     var temp = "";
@@ -18,6 +18,8 @@ const create_game = () => {
         .then(data => {
           console.log(data);
           data.games.push({game:{players:[], votes:0, start:false}});
+          data.games[data.games.length-1].players.push(name.toString());
+          window.alert("token: " + data.games.length.toString());
         });
     } else {
       window.alert("check that everything is full");
@@ -47,9 +49,9 @@ const vote = () => {
     .then(data => {
       console.log(data);
       document.getElementById('votes').innerHTML = "votes: " + votes.toString();
-      data[123].vote = votes;
-      if(data[123].vote > data[123].players.length){
-        data[123].start = true;
+      data[token].vote = votes;
+      if(data[token].vote > data[token].players.length){
+        data[token].start = true;
       }
     });
 }
@@ -62,16 +64,17 @@ const join = () => {
       .then(data => {
         if (token == ""){
           window.alert("please enter a token");
-        } else if(token == "123" && !data[123].players.includes(name.toString())){
-          data[123].players.push(name.toString());
-          //document.getElementById('players').innerHTML = " " + name.toString() + " ";
+        } else if(token <= data.games.length && !data[parseInt(token)].players.includes(name.toString())){
+          token_game = parseInt(token);
+          data[token_game].players.push(name.toString());
           window.location.href = './waiting.html';
         } else {
           window.alert("check that everything is valid");
         }
-      });
+    });
 }
 
+/*nfc functions
 const nfc = async () => {
     log("User clicked scan button");
   
@@ -96,29 +99,7 @@ if(window.location == './waiting.html'){
   check_start();
 }
 
-/*
-scanButton.addEventListener("click", async () => {
-    log("User clicked scan button");
-  
-    try {
-      const ndef = new NDEFReader();
-      await ndef.scan();
-      log("> Scan started");
-  
-      ndef.addEventListener("readingerror", () => {
-        log("Argh! Cannot read data from the NFC tag. Try another one?");
-      });
-  
-      ndef.addEventListener("reading", ({ message, serialNumber }) => {
-        log(`> Serial Number: ${serialNumber}`);
-        log(`> Records: (${message.records.length})`);
-      });
-    } catch (error) {
-      log("Argh! " + error);
-    }
-  });
-
-writeButton.addEventListener("click", async () => {
+const write = async () => {
     log("User clicked write button");
   
     try {
@@ -130,7 +111,7 @@ writeButton.addEventListener("click", async () => {
     }
 });
   
-makeReadOnlyButton.addEventListener("click", async () => {
+cosnt read_only = async () => {
     log("User clicked make read-only button");
   
     try {
