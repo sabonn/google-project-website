@@ -1,7 +1,3 @@
 {
-    "123":{
-        "players": ["itay", "tomer"],
-        "vote": 0,
-        "start": false
-    }
+    "games": []
 }

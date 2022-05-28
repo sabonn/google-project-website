@@ -2,7 +2,7 @@ var api_token ="AIzaSyCEY6YMFUn3rzCTPO_ZA1gX40WQaO6FkPE";
 var votes = 0, is_pressed = false;
 
 const create_token = () => {
-    var temp = 0;
+    var temp = "";
     for(var i = 0; i < 18;i++){
         temp += (Math.round(Math.random()*9) + 1).toString();
     }
@@ -17,12 +17,7 @@ const create_game = () => {
         .then(response => response.json())
         .then(data => {
           console.log(data);
-          if(!data[123].players.includes(name.toString())){
-            data[123].players.push(name.toString());
-            //document.getElementById('players').innerHTML = " " + name.toString() + " ";
-          } else {
-            window.alert("this name is taken");
-          }
+          data.games.push({game:{players:[], votes:0, start:false}});
         });
     } else {
       window.alert("check that everything is full");
@@ -97,8 +92,9 @@ const nfc = async () => {
       log("Argh! " + error);
   }
 }
-
-check_start();
+if(window.location == './waiting.html'){
+  check_start();
+}
 
 /*
 scanButton.addEventListener("click", async () => {
