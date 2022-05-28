@@ -13,15 +13,17 @@ const create_game = () => {
     var name = document.getElementById('username').value;
     var size = document.getElementById('field').value;
     if(name != "" && size != ""){
-
       fetch('../data/index.json')
         .then(response => response.json())
         .then(data => {
-          data[123].players[0] = name.toString();
-          document.getElementById('players').innerHTML = data[123].players;
           console.log(data);
+          if(!data[123].players.includes(name.toString())){
+            data[123].players.push(name.toString());
+            //document.getElementById('players').innerHTML = " " + name.toString() + " ";
+          } else {
+            window.alert("this name is taken");
+          }
         });
-
     } else {
       window.alert("check that everything is full");
     }
@@ -60,16 +62,19 @@ const vote = () => {
 const join = () => {
     var name = document.getElementById('userjoin').value;
     var token = document.getElementById('token').value;
-    
-    if (token == ""){
-        window.alert("please enter a token");
-    } else if(token == data.token && !players.includes(name)){
-        players.push(name);
-        window.location.href = './waiting.html';
-        document.getElementById('players').innerHTML += name + ' ';
-    } else {
-        window.alert("check that everything is valid");
-    }
+    fetch('../data/index.json')
+      .then(responce => responce.json())
+      .then(data => {
+        if (token == ""){
+          window.alert("please enter a token");
+        } else if(token == "123" && !data[123].players.includes(name.toString())){
+          data[123].players.push(name.toString());
+          //document.getElementById('players').innerHTML = " " + name.toString() + " ";
+          window.location.href = './waiting.html';
+        } else {
+          window.alert("check that everything is valid");
+        }
+      });
 }
 
 const nfc = async () => {
