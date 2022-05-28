@@ -10,8 +10,6 @@ const create_token = () => {
 }
 
 const create_game = () => {
-    var token = create_token();
-    var players = [];
     var name = document.getElementById('username').value;
     var size = document.getElementById('field').value;
     if(name != "" && size != ""){
@@ -19,8 +17,6 @@ const create_game = () => {
       fetch('../data/index.json')
         .then(response => response.json())
         .then(data => {
-          data += [token];
-          data[token] += players;
           data[123].players[0] = name.toString();
           document.getElementById('players').innerHTML = data[123].players;
           console.log(data);
