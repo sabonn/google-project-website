@@ -17,8 +17,7 @@ const create_game = () => {
         .then(response => response.json())
         .then(data => {
           console.log(data);
-          data.games.push({game:{players:[], votes:0, start:false}});
-          data.games[data.games.length-1].players.push(name.toString());
+          data.games.push({game:{players:[name.toString()], votes:0, start:false}});
           window.alert("token: " + data.games.length.toString());
         });
     } else {
