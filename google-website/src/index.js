@@ -9,7 +9,7 @@ const create_token = () => {
     return temp;
 }
 
-const create_game = () => {
+create.addEventListener('click', () => {
     var name = document.getElementById('username').value;
     var size = document.getElementById('field').value;
     if(name != "" && size != ""){
@@ -23,7 +23,7 @@ const create_game = () => {
     } else {
       window.alert("check that everything is full");
     }
-}
+});
 
 const check_start = () => {
   fetch('../data/index.json')
@@ -35,7 +35,7 @@ const check_start = () => {
     });
 }
 
-const vote = () => {
+vote.addEventListener('click' ,() => {
   if(!is_pressed){
     votes++;
     is_pressed = true;
@@ -53,17 +53,18 @@ const vote = () => {
         data[token].start = true;
       }
     });
-}
+});
 
-const join = () => {
+join.addEventListener('click', () => {
     var name = document.getElementById('userjoin').value;
     var token = document.getElementById('token').value;
     fetch('../data/index.json')
       .then(responce => responce.json())
       .then(data => {
+        console.log(data);
         if (token == ""){
           window.alert("please enter a token");
-        } else if(token <= data.games.length && !data[parseInt(token)].players.includes(name.toString())){
+        } else if(parseInt(token) <= data.games.length && !data[parseInt(token)].players.includes(name.toString())){
           token_game = parseInt(token);
           data[token_game].players.push(name.toString());
           window.location.href = './waiting.html';
@@ -71,7 +72,7 @@ const join = () => {
           window.alert("check that everything is valid");
         }
     });
-}
+});
 
 /*nfc functions
 const nfc = async () => {

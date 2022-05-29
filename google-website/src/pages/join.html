@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <div>
+    <head><meta charset="UTF-8" /></head>
     <link rel="stylesheet" href="../styles.css">
     <a class="go_back" href='./index.html'>&larr; Go Back</a>
-    <script type="text/javascript" src='../index.js'></script>
+    <script type="module" src='../index.js'></script>
     <main class="main">
         <h2 class="title">Join a game</h2>
 
@@ -12,6 +13,6 @@
         <label htmlFor="userjoin">username</label>
         <input type="text" id="userjoin" name="userjoin" required />
         
-        <button class="submit" onclick="join()">&rarr;</button>
+        <button class="submit" id="join">&rarr;</button>
     </main>
 </div>

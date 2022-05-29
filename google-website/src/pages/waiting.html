@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <div>
+    <head><meta charset="UTF-8" /></head>
     <link rel="stylesheet" href="../styles.css">
-    <script type="text/javascript" src='../index.js'></script>
+    <script type="module" src='../index.js'></script>
     <main class="main">
         <h2 class="title">Waiting Room</h2>
         
         <p class="rules">the game will beging shortly</p>
         <p id="votes" class="rules">votes: </p>
 
-        <button id="scanButton" class="submit" onclick="vote()">&rarr;</button>
+        <button id="vote" class="submit">&rarr;</button>
         
         <script>
         if (!("NDEFReader" in window))
