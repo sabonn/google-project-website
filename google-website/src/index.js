@@ -1,3 +1,28 @@
+import { help } from 'module';
+import { initializeApp } from '../node_modules/firebase/app';
+import { getFireStore, doc, setDoc, getDoc, updateDoc} from '../node_modules/firebase/firestore';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCXw_0YXnov8iTar6jJF0j-NbOPysSRmAY",
+  authDomain: "website-1e26f.firebaseapp.com",
+  projectId: "website-1e26f",
+  storageBucket: "website-1e26f.appspot.com",
+  messagingSenderId: "1036462298481",
+  appId: "1:1036462298481:web:d72949366b7b5e0858d2d0",
+  measurementId: "G-D1E324ZDFP"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFireStore(app);
+const test = doc(firestore, 'data/AGhBvGUIJhB8OZxOMM2Q');
+
+const write_db = () => {
+  const docData = {
+    players: ["yes", "no"]
+  }
+  updateDoc(test, docData);
+}
+
 var api_token ="AIzaSyCEY6YMFUn3rzCTPO_ZA1gX40WQaO6FkPE";
 var votes = 0, is_pressed = false, token_game = 0;
 
