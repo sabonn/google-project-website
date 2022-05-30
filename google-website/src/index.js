@@ -1,6 +1,10 @@
 var api_token ="AIzaSyCEY6YMFUn3rzCTPO_ZA1gX40WQaO6FkPE";
 var votes = 0, is_pressed = false, token_game = 0;
 
+var data = {
+  games:[]
+}
+
 const create_token = () => {
     var temp = "";
     for(var i = 0; i < 18;i++){
@@ -21,36 +25,28 @@ const showPosition = (position) => {
   alert("Laltitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude);
 }
 
-joining.addEventListener('click', () => {
+create.addEventListener('click', () => {
   var name = document.getElementById('username').value;
   var size = document.getElementById('field').value;
   if(name != "" && size != ""){
-    fetch('../data/index.json')
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        data.games.push({game:{players:[name.toString()], votes:0, start:false}});
-        window.alert("token: " + data.games.length.toString());
-      });
+    data.games.push({players:[], votes: 0, start:false});
   } else {
     window.alert("check that everything is full");
   }
 });
 
-create.addEventListener('click', () => {
-    var name = document.getElementById('username').value;
-    var size = document.getElementById('field').value;
-    if(name != "" && size != ""){
-      fetch('../data/index.json')
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-          data.games.push({game:{players:[name.toString()], votes:0, start:false}});
-          window.alert("token: " + data.games.length.toString());
-        });
+joining.addEventListener('click', () => {
+  var name = document.getElementById('userjoin').value;
+  var token = document.getElementById('token').value;
+  if(name != "" && token != ""){
+    if(!data.games[parseInt(token)].players.includes(name)){
+      data.games[parseInt(token)].players.push(name);
     } else {
-      window.alert("check that everything is full");
+      window.alert("this name is taken");
     }
+  } else {
+    window.alert("check that everything is full");
+  }
 });
 
 /*nfc functions
