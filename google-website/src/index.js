@@ -1,22 +1,13 @@
 var votes = 0, is_pressed = false, token_game = 0;
+//var angle = -45;
 
 var data = {
   games:[]
 }
 
-const initMap = () => {
-  const uluru = { lat: -25.344, lng: 131.031 };
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 4,
-    center: uluru,
-  });
-  const marker = new google.maps.Marker({
-    position: uluru,
-    map: map,
-  });
-}
-
-window.initMap = initMap;
+//suppose to rotate the arrow
+//document.getElementById("arrow").style.transform = 'rotate(' + angle.toString() + 'deg)';
+//angle --;
 
 const create_token = () => {
     var temp = "";
@@ -41,6 +32,7 @@ const showPosition = (position) => {
 create.addEventListener('click', () => {
   var name = document.getElementById('username').value;
   var size = document.getElementById('field').value;
+  window.location.href = "./game.html";
   if(name != "" && size != ""){
     data.games.push({players:[], votes: 0, start:false});
   } else {
