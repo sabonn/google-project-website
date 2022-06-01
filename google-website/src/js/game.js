@@ -1,10 +1,5 @@
-var angle_str = '-45';
-var angle = -45;
-
-//suppose to rotate the arrow
-document.getElementById("arrow").style.transform = 'rotate(' + angle_str + ' deg)';
-angle--;
-angle_str = angle.toString();
+var angle = 90;
+document.getElementById('arrow').style.transform = 'rotate(' + angle.toString() +'deg)';
 
 const get_location = () => {
     if(navigator.geolocation){
