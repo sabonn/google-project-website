@@ -1,6 +1,10 @@
 var angle = 90;
 document.getElementById('arrow').style.transform = 'rotate(' + angle.toString() +'deg)';
 
+fetch('http://192.168.1.32:9999/')
+  .then(result => result.json())
+  .then(data => {});
+
 const get_location = () => {
     if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition(showPosition);
