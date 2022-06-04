@@ -1,5 +1,7 @@
 from flask import Flask, redirect, url_for, request
 import socket
+
+import flask
 hostName = socket.gethostname()
 hostName = socket.gethostbyname(hostName)
 
@@ -9,7 +11,7 @@ output += '<form action = "http://localhost:5000/login" method = "post">'
 output += '<p><input type = "text" name = "nm" /></p>'
 output += '<p><input type = "submit" value = "submit" /></p>'
 
-app = Flask("name")
+app = Flask(__name__)
 
 @app.route('/', methods=['POST', 'GET'])
 def foo():
