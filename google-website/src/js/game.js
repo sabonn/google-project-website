@@ -1,9 +1,11 @@
 var angle = 90;
 document.getElementById('arrow').style.transform = 'rotate(' + angle.toString() +'deg)';
 
-fetch('http://192.168.1.32:9999/')
+fetch('https://jsonplaceholder.typicode.com/todos/')
   .then(result => result.json())
-  .then(data => {});
+  .then(data => {
+    console.log(data);
+  });
 
 const get_location = () => {
     if(navigator.geolocation){

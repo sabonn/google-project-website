@@ -11,10 +11,11 @@ const create_token = () => {
 create.addEventListener('click', () => {
   var name = document.getElementById('username').value;
   var size = document.getElementById('field').value;
-  fetch('http://192.168.1.32:9999/')
+  fetch('https://jsonplaceholder.typicode.com/todos/')
     .then(result => result.json())
     .then(data => {
-      window.location.href = "./game.html";
+      console.log(data);
+      window.location.href = "./waiting.html";
       if(name != "" && size != ""){
         data.games.push({players:[], votes: 0, start:false});
       } else {

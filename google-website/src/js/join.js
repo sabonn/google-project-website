@@ -2,9 +2,10 @@ joining.addEventListener('click', () => {
     var name = document.getElementById('userjoin').value;
     var token = document.getElementById('token').value;
 
-    fetch('http://192.168.1.32:9999/')
+    fetch('https://jsonplaceholder.typicode.com/todos/')
       .then(result => result.json())
       .then(data => {
+        console.log(data);
         if(name != "" && token != ""){
           if(!data.games[parseInt(token)].players.includes(name)){
             data.games[parseInt(token)].players.push(name);
