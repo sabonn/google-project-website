@@ -1,13 +1,13 @@
-var pressed = false;
+localStorage.setItem("pressed", false);
 
 voting.addEventListener('click', () => {
     fetch('https://jsonplaceholder.typicode.com/todos/')
         .then(result => result.json())
         .then(data => {
+            localStorage.setItem("username", true);
             window.location = './game.html';
-            if(!pressed)data.games.vote++;
+            if(!localStorage.getItem("pressed"))data.games.vote++;
             if(data.games.vote > data.games.length) data.games.start = true;
             if(data.games.start) window.location = './game.html';
-            pressed = true;
     });
 });

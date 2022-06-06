@@ -1,4 +1,4 @@
-var votes = 0, is_pressed = false, token_game = 0;
+var votes = 0, is_pressed = false, token_game = 0, username = "";
 
 const create_token = () => {
     var temp = "";
@@ -14,12 +14,17 @@ create.addEventListener('click', () => {
   fetch('https://jsonplaceholder.typicode.com/todos/')
     .then(result => result.json())
     .then(data => {
-      console.log(data);
-      window.location.href = "./waiting.html";
       if(name != "" && size != ""){
+        username = name.toString();
+        localStorage.setItem("username", username);
+        window.location.href = "./waiting.html";
         data.games.push({players:[], votes: 0, start:false});
       } else {
         window.alert("check that everything is full");
       }
     });
 });
+
+const get_username = () => {
+  return localStorage.getItem("username");
+}
