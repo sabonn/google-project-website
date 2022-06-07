@@ -1,7 +1,7 @@
 var angle = 90;
 document.getElementById('arrow').style.transform = 'rotate(' + angle.toString() +'deg)';
 
-fetch('https://jsonplaceholder.typicode.com/todos/')
+fetch('http://10.78.131.31:9999/data_changes')
   .then(result => result.json())
   .then(data => {
     console.log(data);

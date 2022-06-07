@@ -2,7 +2,7 @@ joining.addEventListener('click', () => {
     var name = document.getElementById('userjoin').value;
     var token = document.getElementById('token').value;
 
-    fetch('https://jsonplaceholder.typicode.com/todos/')
+    fetch('http://10.78.131.31:9999/data_changes')
       .then(result => result.json())
       .then(data => {
         console.log(data);
