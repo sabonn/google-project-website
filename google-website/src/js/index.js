@@ -14,6 +14,7 @@ create.addEventListener('click', () => {
   fetch('http://10.78.131.31:9999/data_changes')
     .then(result => result.json())
     .then(data => {
+      console.log(data);
       if(name != "" && size != ""){
         username = name.toString();
         localStorage.setItem("username", username);

@@ -1,4 +1,5 @@
-var angle = 90;
+var angle = 90, game_index = 0, index = 0;
+
 document.getElementById('arrow').style.transform = 'rotate(' + angle.toString() +'deg)';
 
 fetch('http://10.78.131.31:9999/data_changes')
@@ -18,7 +19,6 @@ const get_location = () => {
   const showPosition = (position) => {
     alert("Laltitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude);
   }
-
 
 /*nfc functions
 const nfc = async () => {
