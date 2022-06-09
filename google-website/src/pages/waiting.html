@@ -10,10 +10,33 @@
         <p id="votes" class="rules">votes: </p>
 
         <button class="submit" id="voting">&rarr;</button>
+
+        <label for="fname">First name:</label> <input type="text" id="fname" name="fname">
+        <label for="lname">Last name:</label> <input type="text" id="lname" name="lname">
+        <button type="submit" onclick='myfunction()';> click</button>
         
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
         <script>
+        
         if (!("NDEFReader" in window))
           window.alert("Web NFC is not available. Use Chrome on Android.");
+
+        function myfunction() {
+          
+          const firstname = document.getElementById("fname").value;
+          const lastname = document.getElementById("lname").value;
+          
+          const dict_values = {firstname, lastname}
+          const s = JSON.stringify(dict_values);
+          console.log(s);
+
+          $.ajax({
+            url:"THE URL FOR THE YOUR SERVER NEEDS TO BE HERE",
+            type:"POST",
+            contentType: "application/json",
+            data: JSON.stringify(s)});
+        }
+
         </script>
         
     </main>
