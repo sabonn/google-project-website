@@ -17,8 +17,8 @@ const get_data = () => {
   }
   var json_data;
 
-  fetch("http://127.0.0.1:9999/data_change",options)
-    .then(result => result.json())
+  fetch("http://127.0.0.1:9999",options)
+    .then(result => result.json)
     .then(data => {
       console.log(data);
       json_data = data;
