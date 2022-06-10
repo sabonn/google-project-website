@@ -6,6 +6,10 @@
     <main class="main">
         <p id="arrow"></p>
     </main>
-    <script src="../js/game.js" type="module"></script>
+    <script src="../js/index.js" type="text/javascript"></script>
+    <script>        
+        if (!("NDEFReader" in window))
+          window.alert("Web NFC is not available. Use Chrome on Android.");
+    </script>
 </div>
 </html>

@@ -11,17 +11,10 @@
 
         <button class="submit" id="voting">&rarr;</button>
 
-        <label for="fname">First name:</label> <input type="text" id="fname" name="fname">
-        <label for="lname">Last name:</label> <input type="text" id="lname" name="lname">
-        <button type="submit" onclick='myfunction()';> click</button>
-        
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
         <script>
-        
-        if (!("NDEFReader" in window))
-          window.alert("Web NFC is not available. Use Chrome on Android.");
 
-        function myfunction() {
+        const push_data = () => {
           
           const firstname = document.getElementById("fname").value;
           const lastname = document.getElementById("lname").value;
