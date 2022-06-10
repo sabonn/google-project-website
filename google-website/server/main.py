@@ -23,8 +23,8 @@ def ma():
 
        return redirect(url_for('ma'))
     elif request.method == 'GET':
-        print(output)
-        return output
+        print(obj)
+        return obj
 
 
 

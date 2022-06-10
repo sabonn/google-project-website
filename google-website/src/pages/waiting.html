@@ -9,7 +9,13 @@
         <p class="rules">the game will beging shortly</p>
         <p class="rules">press to begin </p>
 
-        <button class="submit">&rarr;</button>
+        <button class="submit" onclick="go()">&rarr;</button>
+
+        <script>
+            const go = () => {
+                window.location.href = './game.html';
+            }
+        </script>
 
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
         <script type="text/javascript" src="../index.js"></script>
