@@ -11,16 +11,19 @@ const showPosition = (position) => {
 }
 
 const get_data = () => {
+  const options = {
+    method: 'GET',
+    mode: 'no-cors'
+  }
   var json_data;
-  $.ajax({
-      url:"http://127.0.0.1:9999",
-      type:"GET",
-      dataType:"json",
-      success: (data) => {
-        json_data = data;
-        console.log(data);
-      }
-  });
+
+  fetch("http://127.0.0.1:9999/data_change",options)
+    .then(result => result.json())
+    .then(data => {
+      console.log(data);
+      json_data = data;
+    });
+
   return json_data;
 }
 

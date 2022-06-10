@@ -19,15 +19,11 @@
         if (!("NDEFReader" in window))
           window.alert("Web NFC is not available. Use Chrome on Android.");
 
-        $.ajax({
-            url:"http://192.168.1.22:9999/data_change",
-            mode:'no-cors',
-            dataType:'json',
-            type:'GET',
-            success: (data) => {
+        fetch("http://192.168.1.22:9999/data_change", options)
+            .then(result => result.json())
+            .then(data => {
                 console.log(data);
-            }
-        });
+            });
         
 </script>
 
