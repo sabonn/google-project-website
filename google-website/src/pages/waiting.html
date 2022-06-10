@@ -12,24 +12,7 @@
         <button class="submit" id="voting">&rarr;</button>
 
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-        <script>
-
-        const push_data = () => {
-          
-          const firstname = document.getElementById("fname").value;
-          const lastname = document.getElementById("lname").value;
-          
-          const dict_values = {firstname, lastname}
-          const s = JSON.stringify(dict_values);
-          console.log(s);
-
-          $.ajax({
-            url:"http://192.168.68.121:9999/",
-            type:"POST",
-            data: JSON.stringify(s)});
-        }
-
-        </script>
+        <script type="text/javascript" src="../index.js"></script>
         
     </main>
 <script type="module" src='../js/waiting.js'></script>

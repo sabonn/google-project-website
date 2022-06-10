@@ -13,24 +13,8 @@
         <button class="submit" onclick="push_data()">&rarr;</button>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+        <script type="text/javascript" src="../index.js"></script>
 
-        <script>
-
-            const push_data = () => {
-                const name = document.getElementById("username").value;
- 
-                const dict_values = {name};
-                const s = JSON.stringify(dict_values);
-                console.log(s);
-
-                $.ajax({
-                    url:"http://127.0.0.1:9999",
-                    type:"POST",
-                    data: JSON.stringify(s)});
-
-                window.location.href = './waiting.html';
-            }            
-        </script>
     </main>
 </div>
 </html>

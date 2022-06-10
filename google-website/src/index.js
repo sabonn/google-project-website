@@ -1,13 +1,3 @@
-var angle = 90, game_index = 0, index = 0;
-
-document.getElementById('arrow').style.transform = 'rotate(' + angle.toString() +'deg)';
-
-fetch('http://10.78.131.31:9999/data_changes')
-  .then(result => result.json())
-  .then(data => {
-    console.log(data);
-  });
-
 const get_location = () => {
     if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition(showPosition);
@@ -18,6 +8,35 @@ const get_location = () => {
   
   const showPosition = (position) => {
     alert("Laltitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude);
+  }
+
+  const get_data = () => {
+    $.ajax({
+        url:"http://127.0.0.1:9999",
+        type:"GET",
+        dataType:"json",
+        success: (data) => {
+            console.log(data);
+        }
+    });
+}
+
+const push_data = (data) => {
+
+    if(data != ""){
+    const dict_values = {data};
+    const s = JSON.stringify(dict_values);
+    console.log(s);
+
+    $.ajax({
+        url:"http://127.0.0.1:9999",
+        type:"POST",
+        data: JSON.stringify(s)});
+
+    window.location.href = './waiting.html';
+    } else {
+      window.alert("enter value");
+    }
   }
 
 /*nfc functions
