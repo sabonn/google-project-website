@@ -1,11 +1,15 @@
 from flask import Flask, redirect, url_for, request
 import socket
 import json
+
 hostName = socket.gethostname()
 hostName = socket.gethostbyname(hostName)
+
 t = []
 output = ''
-obj = {'games': []}
+
+obj = {}
+
 output += '<form method="POST">'
 output += '<input name="d" type="text" placeholder="data">'
 output += '<input type="submit" value="enter1">'
@@ -26,8 +30,6 @@ def ma():
         print(obj)
         return obj
 
-
-
 @server.route('/data_change', methods=['GET', 'POST'])
 def data_handler():
     global obj
@@ -39,7 +41,5 @@ def data_handler():
 
     if request.method == 'POST':
         return redirect("http://", code=302)
-
-
 
 server.run(port=9999, host=hostName)
