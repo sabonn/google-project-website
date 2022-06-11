@@ -15,25 +15,13 @@
         if (!("NDEFReader" in window))
           window.alert("Web NFC is not available. Use Chrome on Android.");
 
-        $.getJSON('http://127.0.0.1:9999', (data) => {
+        const getData = async () => {
+            const result = await fetch('https://127.0.0.1:9999');
+            const data = await result.json();
             console.log(data);
-        });
+        }
 
-        /*fetch("http://127.0.0.1:9999")
-            .then(result => result.json)
-            .then(data => {
-                console.log(data);
-            });*/
-        
-        /*$.ajax({
-            url:"http://192.168.1.22:9999",
-            dataType:"json",
-            type:"GET",
-            success: (temp) => {
-                console.log(temp);
-            }
-        });*/
-
+        getData();
 </script>
 
 </div>

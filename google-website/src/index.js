@@ -10,24 +10,14 @@ const showPosition = (position) => {
   alert("Laltitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude);
 }
 
-const get_data = () => {
-  const options = {
-    method: 'GET',
-    mode: 'no-cors'
-  }
-  var json_data;
-
-  fetch("http://127.0.0.1:9999",options)
-    .then(result => result.json)
-    .then(data => {
-      console.log(data);
-      json_data = data;
-    });
-
-  return json_data;
+const get_data = async () => {
+    const result = await fetch('https://jsonplaceholder.typicode.com/todos');
+    const data = await result.json();
+    
+    return data;
 }
 
-const push_data_login = (name) => {
+const push_data = (name) => {
   data = get_data();
   if(data == null || data == {}) {
     window.alert("there is no room open come back later");
