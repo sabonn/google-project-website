@@ -18,50 +18,17 @@ const get_data = async () => {
 }
 
 const push_data = (name) => {
-  data = get_data();
-  if(data == null || data == {}) {
-    window.alert("there is no room open come back later");
-    return;
-  }
-  if(!data.game.players.containse(name)){
-    var temp = data;
-    temp.game.players.push(name);
-    const push_json = JSON.stringify(temp);
+
+    const data = {name};
+    const push_json = JSON.stringify(data);
 
     $.ajax({
-      url:"http://127.0.0.1:9999",
+      url:"http://10.78.129.253:9999/",
       type:"POST",
       data: JSON.stringify(push_json)
     });
 
-    window.location.href = './waiting.html';
-  } else {
-    window.alert("this name is taken please choose another");
-  }
 }
-
-const push_data_create = (name) => {
-
-  if(name != ""){
-  const dict_values = {game:{
-    players:[].push(name),
-    location_x:[0],
-    location_y:[0],
-    start:false
-  }};
-  const s = JSON.stringify(dict_values);
-  console.log(s);
-
-  $.ajax({
-    url:"http://127.0.0.1:9999",
-    type:"POST",
-    data: JSON.stringify(s)});
-
-    window.location.href = './waiting.html';
-    } else {
-      window.alert("enter value");
-    }
-  }
 
 /*nfc functions
 const nfc = async () => {
