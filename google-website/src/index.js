@@ -1,39 +1,93 @@
 const get_location = () => {
+
   if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(showPosition);
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position.coords.latitude + ", " + position.coords.longitude);
+      temp_x = position.coords.latitude;
+      temp_y = position.coords.longitude;
+
+      var data = getData();
+      var push_data = JSON.stringify(data.location_x[localStorage.getItem("index")] = temp_x);
+      push_data = JSON.stringify(data.location_y[localStorage.getItem("index")] = temp_y);
+      const push_json = JSON.stringify(push_data);
+
+      $.ajax({
+        url:'http://192.168.5.157:9999/',
+        type:'POST',
+        data: JSON.stringify(push_json)
+      });
+
+    });
   } else {
     window.alert("geolocation is not supported in this browser");
   }
 }
+
+const start_game = () => {
+  const index = localStorage("index");
   
-const showPosition = (position) => {
-  console.log("Laltitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude);
+  if(index == 0) {
+    const data = getData();
+
+    const push_json = JSON.stringify(data.start = true);
+
+    $.ajax({
+      url:'http://192.168.5.157:9999/',
+      type:'POST',
+      data: JSON.stringify(push_json)
+    });
+  }
 }
 
-const get_data = async () => {
-    const result = await fetch('https://jsonplaceholder.typicode.com/todos');
-    const data = await result.json();
-    
-    console.log(data);
-    return data;
+const join = async (name) => {
+
+  const result = await fetch('http://192.168.5.157:9999/');
+  var data = await result.json();
+
+  console.log(data + '\n' + data.players);
+
+  var push_data = JSON.stringify(data.players[1] = name);
+
+  push_data = JSON.stringify(data.location_x[1] = 0);
+  push_data = JSON.stringify(data.location_y[1] = 0);
+
+  const push_json = JSON.stringify(push_data);
+
+  $.ajax({
+    url:'http://192.168.5.157:9999/',
+    type:'POST',
+    data:JSON.stringify(push_json)
+  });
+
+  localStorage.setItem("index", 1);
+  
+  console.log(data);
+  console.log(localStorage.getItem("index"));
+
+  window.location.href = './waiting.html';
 }
 
-const push_data = (name) => {
+const create = (name) => {
 
     const data = {
-      players:[].push(name),
-      location_x:[0],
-      location_y:[0],
+      players:[name, ''],
+      location_x:[0, null],
+      location_y:[0, null],
       nfc:false,
       start:false
     };
+    
     const push_json = JSON.stringify(data);
+    console.log(push_json);
 
     $.ajax({
       url:"http://192.168.5.157:9999/",
       type:"POST",
       data: JSON.stringify(push_json)
     });
+
+    localStorage.setItem("index", 0);
+    console.log(localStorage.getItem("index"));
     window.location.href = './waiting.html';
 }
 
@@ -61,28 +115,3 @@ const nfc = async () => {
 if(window.location == './waiting.html'){
   check_start();
 }
-
-/*
-const write = async () => {
-    log("User clicked write button");
-  
-    try {
-      const ndef = new NDEFReader();
-      await ndef.write("Hello world!");
-      log("> Message written");
-    } catch (error) {
-      log("Argh! " + error);
-    }
-});
-  
-cosnt read_only = async () => {
-    log("User clicked make read-only button");
-  
-    try {
-      const ndef = new NDEFReader();
-      await ndef.makeReadOnly();
-      log("> NFC tag has been made permanently read-only");
-    } catch (error) {
-      log("Argh! " + error);
-    }
-});*/
