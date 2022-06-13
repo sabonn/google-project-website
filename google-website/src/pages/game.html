@@ -12,9 +12,9 @@
     <script>
 
       if (!("NDEFReader" in window)) window.alert("Web NFC is not available. Use Chrome on Android.");
-      
+
       const getData = async () => {
-        const result = await fetch('http://10.78.129.253:9999/');
+        const result = await fetch('http://192.168.5.157:9999/');
         const data = await result.json();
 
         console.log(data);

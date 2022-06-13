@@ -7,54 +7,62 @@ const get_location = () => {
 }
   
 const showPosition = (position) => {
-  alert("Laltitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude);
+  console.log("Laltitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude);
 }
 
 const get_data = async () => {
     const result = await fetch('https://jsonplaceholder.typicode.com/todos');
     const data = await result.json();
     
+    console.log(data);
     return data;
 }
 
 const push_data = (name) => {
 
-    const data = {name};
+    const data = {
+      players:[].push(name),
+      location_x:[0],
+      location_y:[0],
+      nfc:false,
+      start:false
+    };
     const push_json = JSON.stringify(data);
 
     $.ajax({
-      url:"http://10.78.129.253:9999/",
+      url:"http://192.168.5.157:9999/",
       type:"POST",
       data: JSON.stringify(push_json)
     });
-
+    window.location.href = './waiting.html';
 }
 
-/*nfc functions
+//nfc functions
 const nfc = async () => {
-    log("User clicked scan button");
+    console.log("User clicked scan button");
   
     try {
       const ndef = new NDEFReader();
       await ndef.scan();
-      log("> Scan started");
+      console.log("> Scan started");
 
       ndef.addEventListener("readingerror", () => {
-        log("Argh! Cannot read data from the NFC tag. Try another one?");
+        console.log("Argh! Cannot read data from the NFC tag. Try another one?");
       });
 
       ndef.addEventListener("reading", ({ message, serialNumber }) => {
-        log(`> Serial Number: ${serialNumber}`);
-        log(`> Records: (${message.records.length})`);
+        console.log(`> Serial Number: ${serialNumber}`);
+        consoel.log(`> Records: (${message.records.length})`);
       });
     } catch (error) {
-      log("Argh! " + error);
+      console.log("Argh! " + error);
   }
 }
 if(window.location == './waiting.html'){
   check_start();
 }
 
+/*
 const write = async () => {
     log("User clicked write button");
   
