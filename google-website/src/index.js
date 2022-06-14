@@ -1,18 +1,23 @@
 const get_location = () => {
 
   if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition((position) => {
+    navigator.geolocation.getCurrentPosition(async (position) => {
       console.log(position.coords.latitude + ", " + position.coords.longitude);
       temp_x = position.coords.latitude;
       temp_y = position.coords.longitude;
 
-      var data = getData();
-      var push_data = JSON.stringify(data.location_x[localStorage.getItem("index")] = temp_x);
-      push_data = JSON.stringify(data.location_y[localStorage.getItem("index")] = temp_y);
-      const push_json = JSON.stringify(push_data);
+      const result = await fetch('http://127.0.0.1:9999/');
+      const data = await result.json();
+
+      var json_data = JSON.parse(data);
+
+      json_data.location_x[localStorage.getItem("index")] = temp_x;
+      json_data.location_y[localStorage.getItem("index")] = temp_y;
+
+      const push_json = JSON.stringify(json_data);
 
       $.ajax({
-        url:'http://192.168.5.157:9999/',
+        url:'http://127.0.0.1:9999/',
         type:'POST',
         data: JSON.stringify(push_json)
       });
@@ -23,16 +28,20 @@ const get_location = () => {
   }
 }
 
-const start_game = () => {
-  const index = localStorage("index");
+const start_game = async () => {
+  const index = localStorage.getItem("index");
   
   if(index == 0) {
-    const data = getData();
 
-    const push_json = JSON.stringify(data.start = true);
+    const result = await fetch('http://127.0.0.1:9999/');
+    var data = await result.json();
+    var data_json = JSON.parse(data);
+
+    data_json.start = true;
+    const push_json = JSON.stringify(data_json);
 
     $.ajax({
-      url:'http://192.168.5.157:9999/',
+      url:'http://127.0.0.1:9999/',
       type:'POST',
       data: JSON.stringify(push_json)
     });
@@ -41,27 +50,26 @@ const start_game = () => {
 
 const join = async (name) => {
 
-  const result = await fetch('http://192.168.5.157:9999/');
+  const result = await fetch('http://127.0.0.1:9999/');
   var data = await result.json();
 
-  console.log(data + '\n' + data.players);
+  var data_json = await JSON.parse(data);
+  console.log(data_json + '\n' + data_json.players);
 
-  var push_data = JSON.stringify(data.players[1] = name);
+  data_json.players.push(name);
+  data_json.location_x.push(0);
+  data_json.location_y.push(0);
 
-  push_data = JSON.stringify(data.location_x[1] = 0);
-  push_data = JSON.stringify(data.location_y[1] = 0);
-
-  const push_json = JSON.stringify(push_data);
+  const push_json = JSON.stringify(data_json);
+  console.log(data_json);
 
   $.ajax({
-    url:'http://192.168.5.157:9999/',
+    url:'http://127.0.0.1:9999/',
     type:'POST',
     data:JSON.stringify(push_json)
   });
 
   localStorage.setItem("index", 1);
-  
-  console.log(data);
   console.log(localStorage.getItem("index"));
 
   window.location.href = './waiting.html';
@@ -70,28 +78,29 @@ const join = async (name) => {
 const create = (name) => {
 
     const data = {
-      players:[name, ''],
-      location_x:[0, null],
-      location_y:[0, null],
+      players:[name],
+      location_x:[0],
+      location_y:[0],
       nfc:false,
-      start:false
+      start:false,
+      catch: false
     };
     
     const push_json = JSON.stringify(data);
     console.log(push_json);
 
     $.ajax({
-      url:"http://192.168.5.157:9999/",
+      url:"http://127.0.0.1:9999/",
       type:"POST",
       data: JSON.stringify(push_json)
     });
 
     localStorage.setItem("index", 0);
     console.log(localStorage.getItem("index"));
+
     window.location.href = './waiting.html';
 }
 
-//nfc functions
 const nfc = async () => {
     console.log("User clicked scan button");
   
@@ -104,14 +113,23 @@ const nfc = async () => {
         console.log("Argh! Cannot read data from the NFC tag. Try another one?");
       });
 
-      ndef.addEventListener("reading", ({ message, serialNumber }) => {
+      ndef.addEventListener("reading", async ({ message, serialNumber }) => {
         console.log(`> Serial Number: ${serialNumber}`);
         consoel.log(`> Records: (${message.records.length})`);
+
+        const result = await fetch('http://127.0.0.1:9999/');
+        var data = await result.json();
+
+        var data_json = JSON.parse(data);
+        data_json.catch = true;
+
+        $.ajax({
+          url:'http://127.0.0.1:9999/',
+          type:'POST',
+          data: JSON.stringify(data_json)
+        });
       });
     } catch (error) {
       console.log("Argh! " + error);
   }
-}
-if(window.location == './waiting.html'){
-  check_start();
 }

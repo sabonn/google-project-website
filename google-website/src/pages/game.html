@@ -1,28 +1,44 @@
 <!DOCTYPE html>
 <html>
+<body>
 <div>
+
     <link rel="stylesheet" href="../styles.css">
-    <div id="map">
-      <div id="arrow"></div>
+    <div class="main">      
+      <button id="nfc" class="submit" onclick="nfc">nfc</button>
     </div>
+
+    <p><a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a></p>
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
     
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
     <script src="../index.js" type="text/javascript"></script>
-
     <script>
+      
+      
+      /*if(localStorage.getItem("index") == 1) window.alert("you'r a catcher");
+      else {
+        document.getElementById('nfc').style.display = 'none';
+        console.log("you'r a runner");
+      }*/
 
+      setInterval(async () => {
+        
+        const result = await fetch('http://127.0.0.1:9999/');
+        var data = await result.json();
+
+        var json_data = JSON.parse(data);
+
+        if(json_data.catch) window.location.href = './game_over.html';
+
+        get_location();
+      }, 1000);
+      
       if (!("NDEFReader" in window)) window.alert("Web NFC is not available. Use Chrome on Android.");
-
-      const getData = async () => {
-        const result = await fetch('http://192.168.5.157:9999/');
-        const data = await result.json();
-
-        console.log(data);
-      }
-
-      getData();
-
-</script>
+    </script>
 
 </div>
+</body>
 </html>
