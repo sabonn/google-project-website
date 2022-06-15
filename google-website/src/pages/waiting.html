@@ -22,7 +22,10 @@
             
                 const json_data = JSON.parse(data);
 
-                if(json_data.start) window.location.href = './game.html';
+                if(json_data.start) {
+                    if(localStorage.getItem("index") == 0) window.location.href = './game.html';
+                    else window.location.href = './runner.html';
+                }
                 else console.log("not yet");
             }, 1000);
 

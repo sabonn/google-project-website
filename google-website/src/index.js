@@ -22,6 +22,9 @@ const get_location = () => {
         data: JSON.stringify(push_json)
       });
 
+      localStorage.setItem('x', temp_x);
+      localStorage.setItem('y', temp_y);
+
     });
   } else {
     window.alert("geolocation is not supported in this browser");
