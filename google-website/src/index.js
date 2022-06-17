@@ -1,3 +1,5 @@
+const url = 'http://192.168.1.23:9999/';
+
 const get_location = () => {
 
   if(navigator.geolocation){
@@ -6,7 +8,7 @@ const get_location = () => {
       temp_x = position.coords.latitude;
       temp_y = position.coords.longitude;
 
-      const result = await fetch('http://127.0.0.1:9999/');
+      const result = await fetch(url);
       const data = await result.json();
 
       var json_data = JSON.parse(data);
@@ -17,7 +19,7 @@ const get_location = () => {
       const push_json = JSON.stringify(json_data);
 
       $.ajax({
-        url:'http://127.0.0.1:9999/',
+        url:url,
         type:'POST',
         data: JSON.stringify(push_json)
       });
@@ -36,7 +38,7 @@ const start_game = async () => {
   
   if(index == 0) {
 
-    const result = await fetch('http://127.0.0.1:9999/');
+    const result = await fetch(url);
     var data = await result.json();
     var data_json = JSON.parse(data);
 
@@ -44,7 +46,7 @@ const start_game = async () => {
     const push_json = JSON.stringify(data_json);
 
     $.ajax({
-      url:'http://127.0.0.1:9999/',
+      url:url,
       type:'POST',
       data: JSON.stringify(push_json)
     });
@@ -53,7 +55,7 @@ const start_game = async () => {
 
 const join = async (name) => {
 
-  const result = await fetch('http://127.0.0.1:9999/');
+  const result = await fetch(url);
   var data = await result.json();
 
   var data_json = await JSON.parse(data);
@@ -67,7 +69,7 @@ const join = async (name) => {
   console.log(data_json);
 
   $.ajax({
-    url:'http://127.0.0.1:9999/',
+    url:url,
     type:'POST',
     data:JSON.stringify(push_json)
   });
@@ -93,7 +95,7 @@ const create = (name) => {
     console.log(push_json);
 
     $.ajax({
-      url:"http://127.0.0.1:9999/",
+      url:url,
       type:"POST",
       data: JSON.stringify(push_json)
     });
@@ -120,14 +122,14 @@ const nfc = async () => {
         console.log(`> Serial Number: ${serialNumber}`);
         consoel.log(`> Records: (${message.records.length})`);
 
-        const result = await fetch('http://127.0.0.1:9999/');
+        const result = await fetch(url);
         var data = await result.json();
 
         var data_json = JSON.parse(data);
         data_json.catch = true;
 
         $.ajax({
-          url:'http://127.0.0.1:9999/',
+          url:url,
           type:'POST',
           data: JSON.stringify(data_json)
         });
