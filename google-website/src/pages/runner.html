@@ -4,8 +4,9 @@
         <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
-        <script src="../index.js" type="text/javascript"></script>
-        
+        <script src="../index.js" type="text/javascript"></script>          
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+
         <style>
           #map {position: absolute; top: 0; right: 0; bottom: 0; left: 0;}
         </style>
@@ -14,14 +15,15 @@
             <a href="https://www.maptiler.com" style="position:absolute;left:10px;bottom:10px;z-index:999;"><img src="https://api.maptiler.com/resources/logo.svg" alt="MapTiler logo"></a>
           </div>
           <p><a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a></p>
+
           <script>
 
             setInterval(() => {
                 get_location();
             }, 1000);
 
-            var map = L.map('map').setView([localStorage.getItem('x'), localStorage.getItem('y')], 15);
-            
+            var map = L.map('map').setView([localStorage.getItem('x'), localStorage.getItem('y')], 35);
+
             L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=1PCxXJxBKEQzohKrwG80',{
               tileSize: 512,
               zoomOffset: -1,
