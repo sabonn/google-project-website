@@ -112,7 +112,7 @@ a {
     box-shadow: 5px 10px;
 }
 
-.submit { 
+.submit {
     margin: 1rem;
     border-radius: 5px;
     font-size: 1.25rem;
@@ -128,4 +128,11 @@ a {
     box-shadow: 2.5px 5px black;
     background-color: inherit;
     color: inherit;
+}
+/* Set the size of the div element that contains the map */
+#map {
+  height: 100%;
+  /* The height is 400 pixels */
+  width: 100%;
+  /* The width is the width of the web page */
 }
