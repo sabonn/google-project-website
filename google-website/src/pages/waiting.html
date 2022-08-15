@@ -18,7 +18,7 @@
 
             setInterval(async () => {
                 var temp_x = 0, temp_y = 0;
-
+                localStorage.setItem("temp", false);
                 navigator.geolocation.getCurrentPosition(async (position) => {
                   console.log(position.coords.latitude + ", " + position.coords.longitude);
                     temp_x = position.coords.latitude;
@@ -29,7 +29,10 @@
                 const json_data = JSON.parse(data);
 
                 if(json_data.start) {
-                    if(json_data.location_x.indexOf(temp_x) == 0) window.location.href = './game.html';
+                    if(json_data.location_x.indexOf(temp_x) == 0  && localStorage.getItem("temp")) {
+                        localStorage.setItem("temp", false);
+                        window.location.href = './game.html';
+                    }
                     else window.location.href = './runner.html';
                 }
                 else console.log("not yet");
