@@ -1,4 +1,6 @@
-const url = 'http://127.0.0.1:9999/';
+const url = 'http://192.168.1.35:9999';
+
+localStorage.setItem("url", url);
 
 const get_location = () => {
 
@@ -36,7 +38,7 @@ const get_location = () => {
 const start_game = async () => {
   const index = localStorage.getItem("index");
   
-  if(index == 0) {
+  if(index != 0) {
 
     const result = await fetch(url);
     var data = await result.json();

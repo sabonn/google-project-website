@@ -3,7 +3,7 @@
 <body>
   <div id="maping"></div>      
     
-  <button id="nfc" class="submit" onclick="nfc">nfc</button>
+  <button id="nfc" class="submit" onclick="nfc">catch</button>
 
 </body>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -26,12 +26,42 @@
 
     <script>
 
+      let temp_x = 0, temp_y = 0;
+
       setInterval(async () => {
-        get_location();
-      }, 1000)
+          if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(async (position) => {
+              console.log(position.coords.latitude + ", " + position.coords.longitude);
+              temp_x = position.coords.latitude;
+              temp_y = position.coords.longitude;
+
+              const result = await fetch(url);
+              const data = await result.json();
+              var json_data = JSON.parse(data);
+
+              json_data.location_x[0] = temp_x;
+              json_data.location_y[0] = temp_y;
+
+              const push_json = JSON.stringify(json_data);
+
+          $.ajax({
+            url:url,
+            type:'POST',
+            data: JSON.stringify(push_json)
+          });
+
+            localStorage.setItem('x', temp_x);
+            localStorage.setItem('y', temp_y);
+
+          });
+          } else {
+          window.alert("geolocation is not supported in this browser");
+          }
+        
+      }, 1000);
 
       const initMap = async () => {
-        const result = await fetch("http://127.0.0.1:9999/");
+        const result = await fetch(localStorage.getItem("url"));
         const json_data = await result.json();
         const data = await JSON.parse(json_data);
 

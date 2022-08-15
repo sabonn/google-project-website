@@ -18,7 +18,7 @@
         
         const initMap = async () => {
 
-          const result = await fetch("http://127.0.0.1:9999/");
+          const result = await fetch(localStorage.getItem("url"));
           const json_data = await result.json();
           const data = JSON.parse(json_data);
 

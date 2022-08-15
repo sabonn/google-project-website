@@ -17,13 +17,19 @@
         <script>
 
             setInterval(async () => {
-                const result = await fetch('http://192.168.1.23:9999/');
+                var temp_x = 0, temp_y = 0;
+
+                navigator.geolocation.getCurrentPosition(async (position) => {
+                  console.log(position.coords.latitude + ", " + position.coords.longitude);
+                    temp_x = position.coords.latitude;
+                    temp_y = position.coords.longitude;
+                });
+                const result = await fetch(localStorage.getItem("url"));
                 const data = await result.json();
-            
                 const json_data = JSON.parse(data);
 
                 if(json_data.start) {
-                    if(localStorage.getItem("index") == 0) window.location.href = './game.html';
+                    if(json_data.location_x.indexOf(temp_x) == 0) window.location.href = './game.html';
                     else window.location.href = './runner.html';
                 }
                 else console.log("not yet");
